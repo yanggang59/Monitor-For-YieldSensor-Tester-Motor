@@ -68,7 +68,9 @@ void MainWindow::on_Btn_openSerial_clicked()
             /*设置数据位*/
             switch (ui->CB_databit->currentIndex())
             {
-                case 8:MotorControlSerial->setDataBits(QSerialPort::Data8);
+                case 8:
+                    MotorControlSerial->setDataBits(QSerialPort::Data8);
+                    break;
                 default:break;
 
             }
@@ -76,9 +78,15 @@ void MainWindow::on_Btn_openSerial_clicked()
             /*Set Parity*/
             switch (ui->CB_paritybit->currentIndex())
             {
-                case 0:MotorControlSerial->setParity(QSerialPort::NoParity);
-                case 1:MotorControlSerial->setParity(QSerialPort::OddParity);
-                case 2:MotorControlSerial->setParity(QSerialPort::EvenParity);
+                case 0:
+                    MotorControlSerial->setParity(QSerialPort::NoParity);
+                    break;
+                case 1:
+                    MotorControlSerial->setParity(QSerialPort::OddParity);
+                    break;
+                case 2:
+                    MotorControlSerial->setParity(QSerialPort::EvenParity);
+                    break;
                 default:break;
 
             }
@@ -86,8 +94,12 @@ void MainWindow::on_Btn_openSerial_clicked()
 
             switch(ui->CB_stopbit->currentIndex())
             {
-                case 1:MotorControlSerial->setStopBits(QSerialPort::OneStop);
-                case 2:MotorControlSerial->setStopBits(QSerialPort::TwoStop);
+                case 0:
+                    MotorControlSerial->setStopBits(QSerialPort::OneStop);
+                    break;
+                case 1:
+                    MotorControlSerial->setStopBits(QSerialPort::TwoStop);
+                    break;
                 default:break;
             }
 
@@ -168,19 +180,39 @@ void MainWindow::on_Btn_SetSpeed_clicked()
         msgBox.exec();
         return;
     }
-    int i =ui->speedSetting->value();
+    int i =ui->speedSetting->value()/60;
     switch (i)
     {
-        case 0:MotorControlSerial->write("X",1);
-        case 1:MotorControlSerial->write("A",1); //60r/min
-        case 2:MotorControlSerial->write("B",1); //120r/min
-        case 3:MotorControlSerial->write("C",1); //180r/min
-        case 4:MotorControlSerial->write("D",1); //240r/min
-        case 5:MotorControlSerial->write("E",1); //300r/min
-        case 6:MotorControlSerial->write("F",1); //360r/min
-        case 7:MotorControlSerial->write("G",1); //420r/min
-        case 8:MotorControlSerial->write("H",1); //480r/min
-        case 9:MotorControlSerial->write("I",1); //540r/min
+        case 0:
+            MotorControlSerial->write("X",1);
+            break;
+        case 1:
+            MotorControlSerial->write("A",1); //60r/min
+            break;
+        case 2:
+            MotorControlSerial->write("B",1); //120r/min
+            break;
+        case 3:
+            MotorControlSerial->write("C",1); //180r/min
+            break;
+        case 4:
+            MotorControlSerial->write("D",1); //240r/min
+            break;
+        case 5:
+            MotorControlSerial->write("E",1); //300r/min
+            break;
+        case 6:
+            MotorControlSerial->write("F",1); //360r/min
+            break;
+        case 7:
+            MotorControlSerial->write("G",1); //420r/min
+            break;
+        case 8:
+            MotorControlSerial->write("H",1); //480r/min
+            break;
+        case 9:
+            MotorControlSerial->write("I",1); //540r/min
+            break;
         default:break;
     }
 }
